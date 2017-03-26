@@ -117,13 +117,13 @@ See the **NEWS** section at the bottom of this page
 Description
 -----------
 
-Flow Injection Analysis coupled to High-Resolution Mass Spectrometry is a promising approach for high-throughput metabolomics. FIA- HRMS data, however, cannot be pre-processed with current software tools which rely on liquid chromatography separation, or handle low resolution data only.
+**Flow Injection Analysis coupled to High-Resolution Mass Spectrometry (FIA-HRMS)** is a promising approach for **high-throughput metabolomics** (Madalinski *et al.*, 2008; Fuhrer *et al.*, 2011; Draper *et al.*, 2013). FIA- HRMS data, however, cannot be preprocessed with current software tools which rely on liquid chromatography separation, or handle low resolution data only.
 
-The proFIA module is a workflow allowing to preprocess FIA-HRMS raw data in centroid mode and open format (netCDF, mzData, mzXML, and mzML), and generate the table of peak intensities (peak table). The workflow of peak detection within individual sample files, followed by alignment between files in the m/z dimension, and imputation of the missing values in the final peak table (Delabriere et al., submitted).
+The **proFIA module is a workflow** allowing to preprocess FIA-HRMS raw data in **centroid** mode and open format (netCDF, mzData, mzXML, and mzML), and generates the table of peak intensities (**peak table**). The workflow consists in **peak detection and quantification** within individual sample files, followed by **alignment** between files in the m/z dimension, and **imputation** of the missing values in the final peak table (Delabriere *et al.*, submitted). For each ion, the graph representing the intensity as a function of time is called a **flowgram**. A flowgram can be modeled as I = kP + ME(P) + B + e, where k is the response factor (corresponding to the ionization properties of the analyte), P is the **sample peak** (normalized profile which is common for all analytes from a sample and depends on the flow injection conditions only), ME is the **matrix effect**, B is the **solvent baseline**, and e is the heteroscedastic noise.
 
-The generated peak table is available in the '3 table' W4M tabular format (dataMatrix, sampleMetadata, and variableMetadata) for downstream statistical analysis and annotation with W4M modules.
+The generated peak table is available in the '3 table' W4M tabular format (**dataMatrix**, **sampleMetadata**, and **variableMetadata**) for downstream statistical analysis and annotation with W4M modules.
 
-A figure provides diagnostics and visualization of the preprocessed data set.
+A figure provides **diagnostics** and visualization of the preprocessed data set.
 
 ---------------------------------------------------
 
@@ -132,6 +132,9 @@ A figure provides diagnostics and visualization of the preprocessed data set.
 **References**
 
 | Delabriere A., Hohenester U., Junot C. and Thevenot E.A. proFIA: A data preprocessing workflow for Flow Injection Analysis coupled to High-Resolution Mass Spectrometry. *submitted*.
+| Draper J., Lloyd A., Goodacre R. and Beckmann M. (2013). Flow infusion electrospray ionisation mass spectrometry for high throughput, non-targeted metabolite fingerprinting: a review. *Metabolomics* 9, 4-29.
+| Fuhrer T., Dominik H., Boris B. and Zamboni N. (2011). High-throughput, accurate mass metabolome profiling of cellular extracts by flow injection-time-of-flight mass spectrometry. *Analytical Chemistry* 83, 7074-7080.
+| Madalinski G., Godat E., Alves S., Lesage D., Genin E., Levi P., Labarre J., Tabet J., Ezan E. and Junot, C. (2008). Direct introduction of biological samples into a LTQ-orbitrap hybrid mass spectrometer as a tool for fast metabolome analysis. *Analytical Chemistry* 80, 3291-3303.
 
 ---------------------------------------------------
 
@@ -218,7 +221,7 @@ Output files
 ------------
 
 dataMatrix.tabular
-	| **dataMatrix** tabular separated file with the variables as rows and samples as columns.
+	| **dataMatrix** tabular separated file with the variables as rows and samples as columns. Missing values are indicated as 'NA' (i.e. when the signal was not significantly different from noise).
 	|
 	
 sampleMetadata.tabular
@@ -226,11 +229,11 @@ sampleMetadata.tabular
 	| 
 	
 variableMetadata.tabular
-	| **variableMetadata** tabular separated file containing the variable metadata as columns.
+	| **variableMetadata** tabular separated file containing the variable metadata as columns. The **timeShifted** flag is set to 1 when the flowgram is time shifted compared to the sample peak (probably due to liquid retention in the FI tube). The **corSampPeakMean** metric is the correlation between the feature flowgram and the sample peak (values are in [-1, 1]). A value below 0.2 suggests that the feature signal is affected by a strong matrix effect. The **meanSolvent** is the mean baseline signal in the feature flowgrams. The **signalOverSolventPvalueMean** is the mean p-value of the tests discriminating between signal and baseline solvent.
 	| 
 
 figure.pdf
-	| Visualization and diagnostics about the preprocessed data set; **Feature quality**: Number of detected features per sample for each of the three categories: 'Well-behaved' features have a peak shape close to the sample peak (optimal FIA acquisition is achieved when the majority of the features fall into this category); 'Shifted' indicates a time shift compared to the sample peak, and probably results from rentention in the tube; 'Significant Matrix Effect' corresponds to a correlation between the feature and the samples peaks of less than 0.2, which is usually caused by a strong matrix effect; **Sample peaks**: Visualization of the peak model for each sample; should have close shapes in case of similar FIA conditions; **m/z density**: may allow to detect a missing m/z value, and in turn, suggest that the *ppm* parameter should be modified; **PCA score plot** of the log10 intensities to detect sample outliers.
+	| Visualization and diagnostics about the preprocessed data set; **Feature quality**: Number of detected features per sample for each of the three categories: 'Well-behaved' features have a peak shape close to the sample peak (optimal FIA acquisition is achieved when the majority of the features fall into this category); 'Shifted' indicates a time shift compared to the sample peak, and probably results from retention in the FI tube; 'Significant Matrix Effect' corresponds to a correlation between the feature and the samples peaks of less than 0.2, which is usually caused by a strong matrix effect; **Sample peaks**: Visualization of the peak model for each sample; should have close shapes in case of similar FIA conditions; **m/z density**: may allow to detect a missing m/z value, and in turn, suggest that the *ppm* parameter should be modified; **PCA score plot** of the log10 intensities to detect sample outliers.
 	| 
 			
 information.txt
