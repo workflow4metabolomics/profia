@@ -12,7 +12,7 @@ Status: [![Build Status](https://travis-ci.org/workflow4metabolomics/profia.svg?
 **Author:** Alexis Delabriere and Etienne A. Thevenot (CEA, LIST, MetaboHUB, W4M Core Development Team)   
 **Email:** [etienne.thevenot(at)cea.fr](mailto:etienne.thevenot@cea.fr)  
 **Citation:** Delabriere A., Hohenester U., Junot C. and Thevenot E.A. proFIA: A data preprocessing workflow for Flow Injection Analysis coupled to High-Resolution Mass Spectrometry. *submitted*.   
-**Licence:** CeCILL
+**Licence:** CeCILL  
 **Reference history:**      
 **Funding:** Agence Nationale de la Recherche ([MetaboHUB](http://www.metabohub.fr/index.php?lang=en&Itemid=473) national infrastructure for metabolomics and fluxomics, ANR-11-INBS-0010 grant)
 
