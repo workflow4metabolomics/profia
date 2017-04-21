@@ -1,12 +1,12 @@
 
-Start of the 'proFIA' Galaxy module call: Sat 25 Mar 2017 08:55:32 PM
+Start of the 'proFIA' Galaxy module call: Fri 21 Apr 2017 09:13:07 PM
 files_root_directory	 plasFIA 
 
 1) Peak detection step ('proFIAset'):
 
 2) Peak alignment ('group.FIA'):
 
- 719  groups have been done .
+ 722  groups have been done .
 
 3) Creating the peak table ('makeDataMatrix'):
 
@@ -14,9 +14,9 @@ files_root_directory	 plasFIA
 
 5) Plotting ('plot'):
 PCA
-3 samples x 648 variables
+3 samples x 644 variables
 standard scaling of predictors
-71 excluded variables (near zero variance)
+78 excluded variables (near zero variance)
       R2X(cum) pre ort
 Total        1   2   0
 null device 
@@ -25,11 +25,11 @@ null device
 6) Printing ('show'):
 A "proFIAset" object containing  1  classes.
 Missing values have been imputed. 
-2161  peaks detected.
-719  features have been grouped.
+2101  peaks detected.
+722  features have been grouped.
 The data matrix is avalaible.
-Memory usage: 0.425 MB
+Memory usage: 0.419 MB
 
 7) Exporting ('exportDataMatrix', 'exportSampleMetadata', 'exportVariableMetadata'):
 
-End of 'proFIA' Galaxy module call: 2017-03-25 21:22:13
+End of 'proFIA' Galaxy module call: 2017-04-21 21:14:58

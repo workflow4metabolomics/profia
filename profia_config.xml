@@ -1,4 +1,4 @@
-<tool id="profia" name="proFIA" version="3.0.0">
+<tool id="profia" name="proFIA" version="3.0.2">
   <description>Preprocessing of FIA-HRMS data</description>
   
   <requirements>
@@ -258,6 +258,14 @@ Figure output
 NEWS
 ----
 
+CHANGES IN VERSION 3.0.2
+========================
+
+NEW FEATURE
+
+Parallel processing
+
+
 CHANGES IN VERSION 3.0.0
 ========================
 
@@ -270,7 +278,7 @@ Creation of the tool
 <citations>
   <citation type="bibtex">@Article{DelabriereSubmitted,
   Title                    = {proFIA: A data preprocessing workflow for Flow Injection Analysis coupled to High-Resolution Mass Spectrometry},
-  Author                   = {Delabriere, Alexis and Hohenester, Ulli and Junot, Christophe and Thevenot, Etienne A},
+  Author                   = {Delabriere, Alexis and Hohenester, Ulli and Colsch, Benoit and Junot, Christophe and Fenaille, Francois and Thevenot, Etienne A},
   Journal                  = {submitted},
   Year                     = {submitted},
   Pages                    = {--},

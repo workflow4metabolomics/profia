@@ -7,11 +7,11 @@ Status: [![Build Status](https://travis-ci.org/workflow4metabolomics/profia.svg?
 
 ### Description
 
-**Version:** 3.0.0  
-**Date:** 2017-03-21     
+**Version:** 3.0.2  
+**Date:** 2017-04-21     
 **Author:** Alexis Delabriere and Etienne A. Thevenot (CEA, LIST, MetaboHUB, W4M Core Development Team)   
 **Email:** [etienne.thevenot(at)cea.fr](mailto:etienne.thevenot@cea.fr)  
-**Citation:** Delabriere A., Hohenester U., Junot C. and Thevenot E.A. proFIA: A data preprocessing workflow for Flow Injection Analysis coupled to High-Resolution Mass Spectrometry. *submitted*.   
+**Citation:** Delabriere A., Hohenester U., Colsch B., Junot C., Fenaille F. and Thevenot E.A. proFIA: A data preprocessing workflow for Flow Injection Analysis coupled to High-Resolution Mass Spectrometry. *submitted*.   
 **Licence:** CeCILL  
 **Reference history:**      
 **Funding:** Agence Nationale de la Recherche ([MetaboHUB](http://www.metabohub.fr/index.php?lang=en&Itemid=473) national infrastructure for metabolomics and fluxomics, ANR-11-INBS-0010 grant)
@@ -38,8 +38,8 @@ Status: [![Build Status](https://travis-ci.org/workflow4metabolomics/profia.svg?
     ```r
     source("http://www.bioconductor.org/biocLite.R")
     biocLite("xcms")
-    biocLite("proFIA")
     biocLite("plasFIA")
+    biocLite("proFIA")
     ```  
 
 ### Tests
@@ -53,7 +53,13 @@ install.packages('RUnit', dependencies = TRUE)
 
 ### Working example  
 
-### News  
+### News
+
+###### CHANGES IN VERSION 3.0.2  
+
+NEW FEATURE  
+
+ * Parallel processing  
 
 ###### CHANGES IN VERSION 3.0.0  
 

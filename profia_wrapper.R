@@ -97,7 +97,7 @@ cat("\n", stpI, ") Peak detection step ('proFIAset'):\n", sep = "")
 
 fiaset <- proFIAset(directory,
                     ppm = as.numeric(argVc["ppmN"]),
-                    parallel = FALSE)
+                    parallel = TRUE)
 
 stpI <- stpI + 1
 
