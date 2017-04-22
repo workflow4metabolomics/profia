@@ -7,6 +7,8 @@
     <requirement type="package">r-maxLik</requirement>
     <requirement type="package">r-minpack.lm</requirement>
     <requirement type="package">r-pracma</requirement>
+    <requirement type="package">bioconductor-xcms</requirement>
+    <requirement type="package">bioconductor-plasFIA</requirement>
     <requirement type="package">bioconductor-proFIA</requirement>
   </requirements>
   
@@ -73,7 +75,14 @@
       <param name="ppmGroupN" value="1"/>
       <param name="fracGroupN" value="0.1"/>
       <param name="kI" value="2"/>
-      <output name="dataMatrix_out" file="output-dataMatrix.tsv"/>
+      <output name="information">
+        <assert_contents>
+          <has_text text="722  groups have been done" />
+	  <has_text text="3 samples x 644 variables" />
+	  <has_text text="78 excluded variables (near zero variance)" />
+          <has_text text="2101  peaks detected" />
+        </assert_contents>
+      </output>
     </test>
   </tests>
   
