@@ -16,7 +16,7 @@
     <exit_code range="1:" level="fatal" />
   </stdio>
   
-  <command><![CDATA[
+  <command>
   Rscript $__tool_directory__/profia_wrapper.R
 
   #if $inputs.input == "lib":
@@ -35,7 +35,7 @@
   variableMetadata_out "$variableMetadata_out"
   figure "$figure"
   information "$information"
-  ]]></command>
+  </command>
   
   <inputs>
     <conditional name="inputs">
@@ -75,6 +75,7 @@
       <param name="ppmGroupN" value="1"/>
       <param name="fracGroupN" value="0.1"/>
       <param name="kI" value="2"/>
+      <output name="dataMatrix_out" file="output-dataMatrix.tsv" />
       <output name="information">
         <assert_contents>
           <has_text text="722  groups have been done" />
