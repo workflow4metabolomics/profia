@@ -1,5 +1,5 @@
 
-Start of the 'proFIA' Galaxy module call: Fri 21 Apr 2017 09:13:07 PM
+Start of the 'proFIA' Galaxy module call: Wed 03 May 2017 01:18:28 PM
 files_root_directory	 plasFIA 
 
 1) Peak detection step ('proFIAset'):
@@ -32,4 +32,4 @@ Memory usage: 0.419 MB
 
 7) Exporting ('exportDataMatrix', 'exportSampleMetadata', 'exportVariableMetadata'):
 
-End of 'proFIA' Galaxy module call: 2017-04-21 21:14:58
+End of 'proFIA' Galaxy module call: 2017-05-03 13:27:09

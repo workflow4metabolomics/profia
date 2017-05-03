@@ -182,8 +182,8 @@ write.table(datDF,
             row.names = FALSE,
             sep = "\t")
 
-samDF <- cbind.data.frame(sampleMetadata = rownames(samDF),
-                          samDF)
+samDF <- cbind.data.frame(sampleMetadata = samDF[, "sampleID"],
+                          class = samDF[, "class"])
 write.table(samDF,
             file = argVc["sampleMetadata_out"],
             quote = FALSE,

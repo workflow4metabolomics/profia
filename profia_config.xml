@@ -1,4 +1,4 @@
-<tool id="profia" name="proFIA" version="3.0.2">
+<tool id="profia" name="proFIA" version="3.0.4">
   <description>Preprocessing of FIA-HRMS data</description>
   
   <requirements>
@@ -44,7 +44,7 @@
         <option value="lib" >Library directory name</option>
       </param>
       <when value="zip_file">
-        <param name="zip_file" type="data" format="no_unzip.zip,zip" label="Zip file" />
+        <param name="zip_file" type="data" format="no_unzip.zip,zip" label="Zip file (see the details for file upload in the help section below)" />
       </when>
       <when value="lib">
         <param name="library" type="text" size="40" label="Library directory name" help="The name of your directory containing all your data" >
@@ -99,7 +99,7 @@
 
 **Please cite**
 
-Delabriere A., Hohenester U., Junot C. and Thevenot E.A. *proFIA*: A data preprocessing workflow for Flow Injection Analysis coupled to High-Resolution Mass Spectrometry. *submitted*.
+Delabriere A., Hohenester U., Colsch B., Junot C., Fenaille F. and Thevenot E.A. *proFIA*: A data preprocessing workflow for Flow Injection Analysis coupled to High-Resolution Mass Spectrometry. *submitted*.
 
 ---------------------------------------------------
 
@@ -120,7 +120,7 @@ See the **NEWS** section at the bottom of this page
 ---------------------------------------------------
 
 ==========================================================
-*proFIA*: Preprocessing workflow for FIA-HRMS data
+*proFIA*: A preprocessing workflow for FIA-HRMS data
 ==========================================================
 
 -----------
@@ -142,9 +142,9 @@ A figure provides **diagnostics** and visualization of the preprocessed data set
 **References**
 
 | Delabriere A., Hohenester U., Junot C. and Thevenot E.A. proFIA: A data preprocessing workflow for Flow Injection Analysis coupled to High-Resolution Mass Spectrometry. *submitted*.
-| Draper J., Lloyd A., Goodacre R. and Beckmann M. (2013). Flow infusion electrospray ionisation mass spectrometry for high throughput, non-targeted metabolite fingerprinting: a review. *Metabolomics* 9, 4-29.
-| Fuhrer T., Dominik H., Boris B. and Zamboni N. (2011). High-throughput, accurate mass metabolome profiling of cellular extracts by flow injection-time-of-flight mass spectrometry. *Analytical Chemistry* 83, 7074-7080.
-| Madalinski G., Godat E., Alves S., Lesage D., Genin E., Levi P., Labarre J., Tabet J., Ezan E. and Junot, C. (2008). Direct introduction of biological samples into a LTQ-orbitrap hybrid mass spectrometer as a tool for fast metabolome analysis. *Analytical Chemistry* 80, 3291-3303.
+| Draper J., Lloyd A., Goodacre R. and Beckmann M. (2013). Flow infusion electrospray ionisation mass spectrometry for high throughput, non-targeted metabolite fingerprinting: a review. *Metabolomics* 9, 4-29. (http://dx.doi.org/10.1007/s11306-012-0449-x)
+| Fuhrer T., Dominik H., Boris B. and Zamboni N. (2011). High-throughput, accurate mass metabolome profiling of cellular extracts by flow injection-time-of-flight mass spectrometry. *Analytical Chemistry* 83, 7074-7080. (http://dx.doi.org/10.1021/ac201267k)
+| Madalinski G., Godat E., Alves S., Lesage D., Genin E., Levi P., Labarre J., Tabet J., Ezan E. and Junot, C. (2008). Direct introduction of biological samples into a LTQ-orbitrap hybrid mass spectrometer as a tool for fast metabolome analysis. *Analytical Chemistry* 80, 3291-3303. (http://dx.doi.org/10.1021/ac7024915)
 
 ---------------------------------------------------
 
@@ -165,9 +165,15 @@ Input files
 | 1 : Choose your inputs    |   zip      |
 +---------------------------+------------+
 
+---------------------------------------------------
+
+.. class:: warningmark
+
+VERY IMPORTANT: Your data must be in **centroid** mode (centroidization of raw files and conversion to an open format can be achieved with the proteowizard software: http://proteowizard.sourceforge.net/).
+
 
 You have two methods for your inputs:
-    | Zip file (recommended): You can put a zip file containing your inputs: myinputs.zip (containing all your conditions as sub-directories).
+    | Zip file (recommended): You can put a zip file containing your inputs: myinputs.zip (containing all your conditions as sub-directories; see below).
     | library folder: You must specify the name of your "library" (folder) created within your space project (for example: /projet/externe/institut/login/galaxylibrary/yourlibrary). Your library must contain all your conditions as sub-directories.
 
 **Steps for creating the zip file**
@@ -177,33 +183,34 @@ You have two methods for your inputs:
 .. class:: warningmark
 
 VERY IMPORTANT: If you zip your files under Windows, you must use the **7Zip** software (http://www.7-zip.org/), otherwise your zip will not be well unzipped on the platform W4M (zip corrupted bug).
-Your zip should contain all your conditions as sub-directories. For example, two conditions (mutant and wild):
-arabidopsis/wild/01.raw
-arabidopsis/mutant/01.raw
 
+1a) Prepare a parent folder with the name of your data set (e.g., 'arabidopsis') containing your files:
+   | 'arabidopsis/w1.raw'
+   | 'arabidopsis/w2.raw'
+   | ...
+   | 'arabidopsis/m1.raw'
+   | 'arabidopsis/m2.raw'
+   | ...
+   |
+   
+1b) If you have several experimental conditions resulting in distinct profiles of your samples (e.g. 'wild-type' and 'mutant' genotypes), create subfolders for your files (e.g., 'wild' and 'mutant') into your parent folder:
+   | 'arabidopsis/wild/w1.raw'
+   | 'arabidopsis/wild/w2.raw'
+   | ...
+   | 'arabidopsis/mutant/m1.raw'
+   | 'arabidopsis/mutant/m2.raw'
+   | ...
+   |
+   
 **Step2: Creating a zip file**
-Create your zip file (e.g.: arabidopsis.zip).
+   | Zip your **parent** folder (here the 'arabidopsis' folder) containing all the subfolders and files with **7Zip**.
+   |
 
 **Step 3 : Uploading it to our Galaxy server**
-If your zip file is less than 2Gb, you get use the Get Data tool to upload it.
-Otherwise if your zip file is larger than 2Gb, please refer to the HOWTO on workflow4metabolomics.org (http://application.sb-roscoff.fr/download/w4m/howto/galaxy_upload_up_2Go.pdf).
-For more informations, don't hesitate to send us an email at supportATworkflow4metabolomics.org).
-
-**Advices for converting your files for the XCMS input**
-
-.. class:: warningmark
-
-VERY IMPORTANT: your data must be in **centroid** mode. In addition, we recommend you to convert your raw files to mzXML.
-
-We recommend the following parameters:
-
-Use Filtering: **True**
-Use Peak Picking: **True**
-Peak Peaking -Apply to MS Levels: **All Levels (1-)** : Centroid Mode
-Use zlib: **64**
-Binary Encoding: **64**
-m/z Encoding: **64**
-Intensity Encoding: **64**
+   | If your zip file is less than 2Gb, you get use the **Upload File** tool and the **no_unzip.zip** type to upload it.
+   | Otherwise if your zip file is larger than 2Gb, please refer to the HOWTO on workflow4metabolomics.org (http://application.sb-roscoff.fr/download/w4m/howto/galaxy_upload_up_2Go.pdf).
+   | For more informations, don't hesitate to send us an email at supportATworkflow4metabolomics.org).
+   |
 
 ----------
 Parameters
@@ -267,6 +274,13 @@ Figure output
 ----
 NEWS
 ----
+
+CHANGES IN VERSION 3.0.4
+========================
+
+MINOR MODIFICATION
+
+Details added in the documentation
 
 CHANGES IN VERSION 3.0.2
 ========================

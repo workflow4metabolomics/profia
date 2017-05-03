@@ -1,4 +1,4 @@
-sampleMetadata	sampleID	class
-1	C100a	plasFIA
-2	C100b	plasFIA
-3	C100c	plasFIA
+sampleMetadata	samDF[, colnames(samDF) != "sampleID"]
+C100a	plasFIA
+C100b	plasFIA
+C100c	plasFIA
