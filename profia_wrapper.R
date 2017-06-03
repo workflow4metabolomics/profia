@@ -205,6 +205,17 @@ write.table(varDF,
 cat("\nEnd of '", modNamC, "' Galaxy module call: ",
     as.character(Sys.time()), "\n", sep = "")
 
+cat("\n\n\n============================================================================")
+cat("\nAdditional information about the call:\n")
+cat("\n1) Parameters:\n")
+print(cbind(value = argVc))
+
+cat("\n2) Session Info:\n")
+
+print(sessionInfo())
+
+cat("============================================================================\n")
+
 sink()
 
 rm(list = ls())
