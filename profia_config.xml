@@ -3,12 +3,6 @@
   
   <requirements>
     <requirement type="package">r-batch</requirement>
-    <requirement type="package">r-FNN</requirement>
-    <requirement type="package">r-maxLik</requirement>
-    <requirement type="package">r-minpack.lm</requirement>
-    <requirement type="package">r-pracma</requirement>
-    <requirement type="package">bioconductor-xcms</requirement>
-    <requirement type="package">bioconductor-plasFIA</requirement>
     <requirement type="package">bioconductor-proFIA</requirement>
   </requirements>
   
