@@ -95,9 +95,43 @@ stpI <- 1
 
 cat("\n", stpI, ") Peak detection step ('proFIAset'):\n", sep = "")
 
-fiaset <- proFIAset(directory,
-                    ppm = as.numeric(argVc["ppmN"]),
-                    parallel = TRUE)
+if("sizeMinN" %in% names(argVc) && argVc["sizeMinN"] != "none") {
+    if("scanMaxI" %in% names(argVc) && argVc["scanMaxI"] != "none") {
+        fiaset <- proFIAset(directory,
+                            ppm = as.numeric(argVc["ppmN"]),
+                            dmz = as.numeric(argVc["dmzN"]),
+                            bandCoverage = as.numeric(ifelse("bandCoverageN" %in% names(argVc), argVc["bandCoverageN"], "0.3")),
+                            sizeMin = as.numeric(argVc["sizeMinN"]),
+                            scanmin = as.numeric(ifelse("scanMinI" %in% names(argVc), argVc["scanMinI"], "1")),
+                            scanmax = as.numeric(argVc["scanMaxI"]),
+                            parallel = FALSE)
+    } else {
+        fiaset <- proFIAset(directory,
+                            ppm = as.numeric(argVc["ppmN"]),
+                            dmz = as.numeric(argVc["dmzN"]),
+                            bandCoverage = as.numeric(ifelse("bandCoverageN" %in% names(argVc), argVc["bandCoverageN"], "0.3")),
+                            sizeMin = as.numeric(argVc["sizeMinN"]),
+                            scanmin = as.numeric(ifelse("scanMinI" %in% names(argVc), argVc["scanMinI"], "1")),
+                            parallel = FALSE)
+    }
+} else {
+    if("scanMaxI" %in% names(argVc) && argVc["scanMaxI"] != "none") {
+        fiaset <- proFIAset(directory,
+                            ppm = as.numeric(argVc["ppmN"]),
+                            dmz = as.numeric(argVc["dmzN"]),
+                            bandCoverage = as.numeric(ifelse("bandCoverageN" %in% names(argVc), argVc["bandCoverageN"], "0.3")),
+                            scanmin = as.numeric(ifelse("scanMinI" %in% names(argVc), argVc["scanMinI"], "1")),
+                            scanmax = as.numeric(argVc["scanMaxI"]),
+                            parallel = FALSE)
+    } else {
+        fiaset <- proFIAset(directory,
+                            ppm = as.numeric(argVc["ppmN"]),
+                            dmz = as.numeric(argVc["dmzN"]),
+                            bandCoverage = as.numeric(ifelse("bandCoverageN" %in% names(argVc), argVc["bandCoverageN"], "0.3")),
+                            scanmin = as.numeric(ifelse("scanMinI" %in% names(argVc), argVc["scanMinI"], "1")),
+                            parallel = FALSE)
+    }
+}
 
 stpI <- stpI + 1
 
@@ -105,6 +139,7 @@ cat("\n", stpI, ") Peak alignment ('group.FIA'):\n", sep = "")
 
 fiaset <- group.FIA(fiaset,
                     ppmGroup = as.numeric(argVc["ppmGroupN"]),
+                    dmz = as.numeric(argVc["dmzGroupN"]),
                     fracGroup = as.numeric(argVc["fracGroupN"]))
 
 stpI <- stpI + 1
@@ -118,6 +153,8 @@ stpI <- stpI + 1
 
 kI <- as.integer(argVc["kI"])
 
+
+###TODO add the two method for imputation.
 if(kI > 0) {
 
     cat("\n", stpI, ") Imputing missing values ('imputeMissingValues.WKNN_TN'):\n", sep = "")

@@ -1,4 +1,4 @@
-<tool id="profia" name="proFIA" version="3.0.4">
+<tool id="profia" name="proFIA" version="3.0.6">
   <description>Preprocessing of FIA-HRMS data</description>
   
   <requirements>
@@ -20,9 +20,18 @@
   #end if
   
   ppmN "$ppmN"
+  dmzN "$dmzN"
   ppmGroupN "$ppmGroupN"
+  dmzGroupN "$dmzGroupN"
   fracGroupN "$fracGroupN"
   kI "$kI"
+
+  #if $advCpt.opcC == "full"
+  bandCoverageN "$advCpt.bandCoverageN"
+  sizeMinN "$advCpt.sizeMinN"
+  scanMinI "$advCpt.scanMinI"        
+  scanMaxI "$advCpt.scanMaxI"
+  #end if  
 
   dataMatrix_out "$dataMatrix_out"
   sampleMetadata_out "$sampleMetadata_out"
@@ -47,10 +56,31 @@
       </when>     
     </conditional>
     
-    <param name="ppmN" label="Maximum deviation between centroids during band detection (in ppm)" type="text" value = "5" help="[ppm]" />	  
-    <param name="ppmGroupN" label="Accuracy of the mass spectrometer to be used during feature alignment (in ppm)" type="text" value = "5" help="[ppmGroup] Should be inferior or equal to the deviation parameter above." />
+    <param name="ppmN" label="Maximum deviation between centroids during band detection (in ppm)" type="text" value = "7" help="[ppm]" />
+    <param name="dmzN" label="Minimal maximum deviation between centroids during band detection (in Da)" type="text" value = "0.001" help="[dmz] shloud be at most 0.002 for high resolution" />	    
+    <param name="ppmGroupN" label="Accuracy of the mass spectrometer to be used during feature alignment (in ppm)" type="text" value = "3" help="[ppmGroup] Should be inferior to the ppm parameter above." />
+    <param name="dmzGroupN" label="Minimal accuracy of the mass spectrometer to be used during feature alignment (in Da)" type="text" value = "0.0005" help="[dmzGroup] shloud be at most 0.002 for high resolution" />
     <param name="fracGroupN" label=" Minimum fraction of samples in which a peak should be detected in at least one class to be kept during feature alignment" type="text" value = "0.5" help="[fracGroup]" />
     <param name="kI" label="Number of neighbour features to be used for imputation (select 0 to skip the imputation step)" type="text" value = "5" help="[k]" />
+
+
+
+    <conditional name="advCpt">
+      <param name="opcC" type="select" label="Advanced parameters" >
+	<option value="default" selected="true">Use default</option>
+	<option value="full">Full parameter list</option>
+      </param>
+      <when value="default"/>
+      <when value="full">
+        <param name="bandCoverageN" type="float" value="0.3" label="Minimum fraction of centroids in the estimated injection window for a band to be built" help="[bandCoverage] Must be between 0 and 1"/>
+	<param name="sizeMinN" type="text" value="none" label="Minimum number of consecutive centroids for a band to be built" help="[sizeMin] If set to 'none', the half of the estimated injection window will be used"/>
+	<param name="scanMinI" type="integer" value="1" label="First scan to be preprocessed" help="[scanMin]"/>
+	<param name="scanMaxI" type="text" value="none" label="Last scan to be preprocessed" help="[scanMax] Set to 'none' to preprocess up to the last acquired scan"/>		
+      </when>
+      </conditional>
+
+
+    
   </inputs>
   
   <outputs>
@@ -66,7 +96,9 @@
       <param name="inputs|input" value="zip_file" />
       <param name="inputs|zip_file" value="input-plasFIA.zip" ftype="zip" />
       <param name="ppmN" value="2"/>
+      <param name="dmzN" value="0.0005"/>
       <param name="ppmGroupN" value="1"/>
+      <param name="dmzGroupN" value="0.0005"/>
       <param name="fracGroupN" value="0.1"/>
       <param name="kI" value="2"/>
       <output name="dataMatrix_out" file="output-dataMatrix.tsv" />
@@ -81,7 +113,7 @@
     </test>
   </tests>
   
-  <help>	
+  <help>
 
 .. class:: infomark
 
@@ -210,22 +242,41 @@ VERY IMPORTANT: If you zip your files under Windows, you must use the **7Zip** s
 Parameters
 ----------
    
-Maximum deviation between centroids during band detection; in ppm (default = 5)
+Maximum deviation between centroids during band detection; in ppm (default = 7)
 	| m/z tolerance of centroids corresponding to the same ion from one scan to the other.
 	| 
 
-Accuracy of the mass spectrometer to be used during feature alignment; in ppm (default = 5)
-	| Should be inferior or equal to the deviation parameter above.
+Minimal maximum deviation between centroids during band detection; in Da (default = 0.001); to avoid bias at low mass values, the deviation is the maximum between this quantity and the deviation in ppm 
+	| minimum m/z tolerance of centroids corresponding to the same ion from one scan to the other.
+	| 
+
+Accuracy of the mass spectrometer to be used during feature alignment; in ppm (default = 3); should be less than the ppm parameter used for detection
+	| Should be inferior or equal to the ppm deviation parameter above.
 	| 
     
+Minimal accuracy of the mass spectrometer to be used during feature alignment; in Da (default = 0.0005); to avoid bias at low mass values; the deviation is the maximum between this quantity and the deviation in ppm
+	| 
+
 Minimum fraction of samples in which a peak should be detected in at least one class to be kept during feature alignment (default = 0.5)
 	| Identical to the corresponding parameter in XCMS. 
 	|     
 
 Number of neighbour features to be used for imputation (default = 5)
 	| Select 0 to skip the imputation step. 
-	|     	
+	|
 
+Minimum fraction of centroids in the estimated injection window for a band to be built (default = 0.3)
+        |
+
+
+Minimum number of consecutive centroids for a band to be built (default = half of the size of the estimated injection window)
+	|     		
+
+First scan to be preprocessed (default = 1)
+	|     		
+
+Last scan to be preprocessed (default = last acquisition scan)
+	|     		
 
 ------------
 Output files
@@ -268,6 +319,13 @@ Figure output
 ----
 NEWS
 ----
+CHANGES IN VERSION 3.0.6
+========================
+
+NEW FEATURE
+
+dmz (and dmzGroup) parameters added for the peak detection and grouping steps; bandCoverage, sizeMin, scanMin, and scanMax added as advanced parameters for peak detection
+
 
 CHANGES IN VERSION 3.0.4
 ========================
