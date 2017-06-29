@@ -7,8 +7,8 @@ Status: [![Build Status](https://travis-ci.org/workflow4metabolomics/profia.svg?
 
 ### Description
 
-**Version:** 3.0.4  
-**Date:** 2017-05-02     
+**Version:** 3.0.6  
+**Date:** 2017-06-29     
 **Author:** Alexis Delabriere and Etienne A. Thevenot (CEA, LIST, MetaboHUB, W4M Core Development Team)   
 **Email:** [etienne.thevenot(at)cea.fr](mailto:etienne.thevenot@cea.fr)  
 **Citation:** Delabriere A., Hohenester U., Colsch B., Junot C., Fenaille F. and Thevenot E.A. proFIA: A data preprocessing workflow for Flow Injection Analysis coupled to High-Resolution Mass Spectrometry. *submitted*.   
@@ -54,6 +54,12 @@ install.packages('RUnit', dependencies = TRUE)
 ### Working example  
 
 ### News
+
+###### CHANGES IN VERSION 3.0.6  
+
+NEW FEATURES  
+
+ * New (advanced) parameters available  
 
 ###### CHANGES IN VERSION 3.0.4  
 
