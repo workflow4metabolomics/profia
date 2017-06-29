@@ -4,7 +4,9 @@ test_plasfia_default <- function() {
     argLs <- list(zipfile = "./plasfia/plasFIA.zip",
                   library = "NULL",
                   ppmN = "2",
+                  dmzN = "0.0005",
                   ppmGroupN = "1",
+                  dmzGroupN = "0.0005",
                   fracGroupN = "0.1",
                   kI = "2")
 

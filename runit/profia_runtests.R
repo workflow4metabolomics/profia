@@ -53,7 +53,7 @@ wrapperCallF <- function(paramLs) {
 
     if(.Platform$OS.type == "windows")
         wrapperCallC <- paste("Rscript", wrapperCallC)
-
+    
     wrapperCodeN <- system(wrapperCallC)
 
     if (wrapperCodeN != 0)
