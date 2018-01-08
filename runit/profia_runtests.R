@@ -49,8 +49,6 @@ wrapperCallF <- function(paramLs) {
     ## Call
     wrapperCallC <- paste(c(wrapperPathC, argLs), collapse = " ")
 
-    print(wrapperCallC)
-
     if(.Platform$OS.type == "windows")
         wrapperCallC <- paste("Rscript", wrapperCallC)
     
