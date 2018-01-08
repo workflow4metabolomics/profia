@@ -104,7 +104,7 @@ if("sizeMinN" %in% names(argVc) && argVc["sizeMinN"] != "none") {
                             sizeMin = as.numeric(argVc["sizeMinN"]),
                             scanmin = as.numeric(ifelse("scanMinI" %in% names(argVc), argVc["scanMinI"], "1")),
                             scanmax = as.numeric(argVc["scanMaxI"]),
-                            parallel = FALSE)
+                            parallel = TRUE)
     } else {
         fiaset <- proFIAset(directory,
                             ppm = as.numeric(argVc["ppmN"]),
@@ -112,7 +112,7 @@ if("sizeMinN" %in% names(argVc) && argVc["sizeMinN"] != "none") {
                             bandCoverage = as.numeric(ifelse("bandCoverageN" %in% names(argVc), argVc["bandCoverageN"], "0.3")),
                             sizeMin = as.numeric(argVc["sizeMinN"]),
                             scanmin = as.numeric(ifelse("scanMinI" %in% names(argVc), argVc["scanMinI"], "1")),
-                            parallel = FALSE)
+                            parallel = TRUE)
     }
 } else {
     if("scanMaxI" %in% names(argVc) && argVc["scanMaxI"] != "none") {
@@ -122,14 +122,14 @@ if("sizeMinN" %in% names(argVc) && argVc["sizeMinN"] != "none") {
                             bandCoverage = as.numeric(ifelse("bandCoverageN" %in% names(argVc), argVc["bandCoverageN"], "0.3")),
                             scanmin = as.numeric(ifelse("scanMinI" %in% names(argVc), argVc["scanMinI"], "1")),
                             scanmax = as.numeric(argVc["scanMaxI"]),
-                            parallel = FALSE)
+                            parallel = TRUE)
     } else {
         fiaset <- proFIAset(directory,
                             ppm = as.numeric(argVc["ppmN"]),
                             dmz = as.numeric(argVc["dmzN"]),
                             bandCoverage = as.numeric(ifelse("bandCoverageN" %in% names(argVc), argVc["bandCoverageN"], "0.3")),
                             scanmin = as.numeric(ifelse("scanMinI" %in% names(argVc), argVc["scanMinI"], "1")),
-                            parallel = FALSE)
+                            parallel = TRUE)
     }
 }
 
