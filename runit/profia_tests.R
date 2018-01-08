@@ -8,11 +8,11 @@ test_plasfia_default <- function() {
                   ppmGroupN = "1",
                   dmzGroupN = "0.0005",
                   fracGroupN = "0.1",
-                  kI = "2")
+                  imputeC = "randomForest")
 
     argLs <- c(defaultArgF(testDirC), argLs)
     outLs <- wrapperCallF(argLs)
 
-    checkEqualsNumeric(outLs[["datMN"]]["C100a", "M86.0965"], 1313797.6184402, tolerance = 1e-7)
+    checkEqualsNumeric(outLs[["datMN"]]["C100a", "M86.0965"], 1365657.4687182, tolerance = 1e-7)
 
 }

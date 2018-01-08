@@ -151,19 +151,19 @@ fiaset <- makeDataMatrix(fiaset,
 
 stpI <- stpI + 1
 
-kI <- as.integer(argVc["kI"])
 
+if(argVc["imputeC"] == "randomForest") {
 
-###TODO add the two method for imputation.
-if(kI > 0) {
+    cat("\n", stpI, ") Imputing missing values ('impute.randomForest'):\n", sep = "")
 
-    cat("\n", stpI, ") Imputing missing values ('imputeMissingValues.WKNN_TN'):\n", sep = "")
-
-    fiaset <- imputeMissingValues.WKNN_TN(fiaset,
-                                          k = kI)
+    fiaset <- impute.randomForest(fiaset,
+                                  parallel = FALSE)
 
     stpI <- stpI + 1
 }
+###TODO Fix the error message to set 'parallel' to TRUE: You must register a 'foreach' parallel backend to run 'missForest' in parallel. Set 'parallelize' to 'no' to compute serially.
+###TODO add the impute.KNN_TN method
+
 
 options(warn = optWrnN)
 

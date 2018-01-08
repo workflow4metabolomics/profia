@@ -1,4 +1,4 @@
-<tool id="profia" name="proFIA" version="3.0.6">
+<tool id="profia" name="proFIA" version="3.1.0">
   <description>Preprocessing of FIA-HRMS data</description>
   
   <requirements>
@@ -24,7 +24,7 @@
   ppmGroupN "$ppmGroupN"
   dmzGroupN "$dmzGroupN"
   fracGroupN "$fracGroupN"
-  kI "$kI"
+  imputeC "$imputeC"
 
   #if $advCpt.opcC == "full"
   bandCoverageN "$advCpt.bandCoverageN"
@@ -61,7 +61,10 @@
     <param name="ppmGroupN" label="Accuracy of the mass spectrometer to be used during feature alignment (in ppm)" type="text" value = "3" help="[ppmGroup] Should be inferior to the ppm parameter above." />
     <param name="dmzGroupN" label="Minimal accuracy of the mass spectrometer to be used during feature alignment (in Da)" type="text" value = "0.0005" help="[dmzGroup] shloud be at most 0.002 for high resolution" />
     <param name="fracGroupN" label=" Minimum fraction of samples in which a peak should be detected in at least one class to be kept during feature alignment" type="text" value = "0.5" help="[fracGroup]" />
-    <param name="kI" label="Number of neighbour features to be used for imputation (select 0 to skip the imputation step)" type="text" value = "5" help="[k]" />
+    <param name="imputeC" label="Imputation method" type="select" help="[imputation]">
+      <option value="None">None</option>
+      <option value="randomForest" selected="true">randomForest</option>
+    </param>
 
 
 
@@ -100,14 +103,13 @@
       <param name="ppmGroupN" value="1"/>
       <param name="dmzGroupN" value="0.0005"/>
       <param name="fracGroupN" value="0.1"/>
-      <param name="kI" value="2"/>
+      <param name="imputeC" value="randomForest"/>
       <output name="dataMatrix_out" file="output-dataMatrix.tsv" />
       <output name="information">
         <assert_contents>
-          <has_text text="722  groups have been done" />
-	  <has_text text="3 samples x 644 variables" />
-	  <has_text text="78 excluded variables (near zero variance)" />
-          <has_text text="2101  peaks detected" />
+          <has_text text="707  groups have been done" />
+	  <has_text text="3 samples x 707 variables" />
+          <has_text text="2089  peaks detected" />
         </assert_contents>
       </output>
     </test>
@@ -125,7 +127,7 @@
 
 **Please cite**
 
-Delabriere A., Hohenester U., Colsch B., Junot C., Fenaille F. and Thevenot E.A. *proFIA*: A data preprocessing workflow for Flow Injection Analysis coupled to High-Resolution Mass Spectrometry. *submitted*.
+Delabriere A., Hohenester U., Colsch B., Junot C., Fenaille F. and Thevenot E.A. (2017). *proFIA*: A data preprocessing workflow for Flow Injection Analysis coupled to High-Resolution Mass Spectrometry. *Bioinformatics*, **33**:3767-3775. `https://doi.org/10.1093/bioinformatics/btx458 &lt;https://doi.org/10.1093/bioinformatics/btx458&gt;`_
 
 ---------------------------------------------------
 
@@ -167,10 +169,10 @@ A figure provides **diagnostics** and visualization of the preprocessed data set
 
 **References**
 
-| Delabriere A., Hohenester U., Junot C. and Thevenot E.A. proFIA: A data preprocessing workflow for Flow Injection Analysis coupled to High-Resolution Mass Spectrometry. *submitted*.
-| Draper J., Lloyd A., Goodacre R. and Beckmann M. (2013). Flow infusion electrospray ionisation mass spectrometry for high throughput, non-targeted metabolite fingerprinting: a review. *Metabolomics* 9, 4-29. (http://dx.doi.org/10.1007/s11306-012-0449-x)
-| Fuhrer T., Dominik H., Boris B. and Zamboni N. (2011). High-throughput, accurate mass metabolome profiling of cellular extracts by flow injection-time-of-flight mass spectrometry. *Analytical Chemistry* 83, 7074-7080. (http://dx.doi.org/10.1021/ac201267k)
-| Madalinski G., Godat E., Alves S., Lesage D., Genin E., Levi P., Labarre J., Tabet J., Ezan E. and Junot, C. (2008). Direct introduction of biological samples into a LTQ-orbitrap hybrid mass spectrometer as a tool for fast metabolome analysis. *Analytical Chemistry* 80, 3291-3303. (http://dx.doi.org/10.1021/ac7024915)
+| Delabriere A., Hohenester U., Junot C. and Thevenot E.A. (2017). proFIA: A data preprocessing workflow for Flow Injection Analysis coupled to High-Resolution Mass Spectrometry. *Bioinformatics*, **33**:3767-3775. (https://doi.org/10.1093/bioinformatics/btx458)
+| Draper J., Lloyd A., Goodacre R. and Beckmann M. (2013). Flow infusion electrospray ionisation mass spectrometry for high throughput, non-targeted metabolite fingerprinting: a review. *Metabolomics* 9, 4-29. (https://doi.org/10.1007/s11306-012-0449-x)
+| Fuhrer T., Dominik H., Boris B. and Zamboni N. (2011). High-throughput, accurate mass metabolome profiling of cellular extracts by flow injection-time-of-flight mass spectrometry. *Analytical Chemistry* 83, 7074-7080. (https://doi.org/10.1021/ac201267k)
+| Madalinski G., Godat E., Alves S., Lesage D., Genin E., Levi P., Labarre J., Tabet J., Ezan E. and Junot, C. (2008). Direct introduction of biological samples into a LTQ-orbitrap hybrid mass spectrometer as a tool for fast metabolome analysis. *Analytical Chemistry* 80, 3291-3303. (https://doi.org/10.1021/ac7024915)
 
 ---------------------------------------------------
 
@@ -261,21 +263,19 @@ Minimum fraction of samples in which a peak should be detected in at least one c
 	| Identical to the corresponding parameter in XCMS. 
 	|     
 
-Number of neighbour features to be used for imputation (default = 5)
-	| Select 0 to skip the imputation step. 
+Imputation method for missing values (default = 'randomForest')
 	|
 
-Minimum fraction of centroids in the estimated injection window for a band to be built (default = 0.3)
+Minimum fraction of centroids in the estimated injection window for a band to be built (advanced; default = 0.3)
         |
 
-
-Minimum number of consecutive centroids for a band to be built (default = half of the size of the estimated injection window)
+Minimum number of consecutive centroids for a band to be built (advanced; default = half of the size of the estimated injection window)
 	|     		
 
-First scan to be preprocessed (default = 1)
+First scan to be preprocessed (advanced; default = 1)
 	|     		
 
-Last scan to be preprocessed (default = last acquisition scan)
+Last scan to be preprocessed (advanced; default = last acquisition scan)
 	|     		
 
 ------------
@@ -319,6 +319,14 @@ Figure output
 ----
 NEWS
 ----
+
+CHANGES IN VERSION 3.1.0
+========================
+
+NEW FEATURE
+
+randomForest method implemented for imputation of missing values
+
 CHANGES IN VERSION 3.0.6
 ========================
 
@@ -352,15 +360,7 @@ Creation of the tool
 </help>
 
 <citations>
-  <citation type="bibtex">@Article{DelabriereSubmitted,
-  Title                    = {proFIA: A data preprocessing workflow for Flow Injection Analysis coupled to High-Resolution Mass Spectrometry},
-  Author                   = {Delabriere, Alexis and Hohenester, Ulli and Colsch, Benoit and Junot, Christophe and Fenaille, Francois and Thevenot, Etienne A},
-  Journal                  = {submitted},
-  Year                     = {submitted},
-  Pages                    = {--},
-  Volume                   = {},
-  Doi                      = {}
-  }</citation>
+  <citation type="doi">10.1093/bioinformatics/btx458</citation>
   <citation type="doi">10.1093/bioinformatics/btu813</citation>
 </citations>
 
