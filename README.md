@@ -7,11 +7,11 @@ Status: [![Build Status](https://travis-ci.org/workflow4metabolomics/profia.svg?
 
 ### Description
 
-**Version:** 3.0.6  
-**Date:** 2017-06-29     
+**Version:** 3.1.0   
+**Date:** 2018-01-08     
 **Author:** Alexis Delabriere and Etienne A. Thevenot (CEA, LIST, MetaboHUB, W4M Core Development Team)   
 **Email:** [etienne.thevenot(at)cea.fr](mailto:etienne.thevenot@cea.fr)  
-**Citation:** Delabriere A., Hohenester U., Colsch B., Junot C., Fenaille F. and Thevenot E.A. proFIA: A data preprocessing workflow for Flow Injection Analysis coupled to High-Resolution Mass Spectrometry. *submitted*.   
+**Citation:** Delabriere A., Hohenester U., Colsch B., Junot C., Fenaille F. and Thevenot E.A. (2017). proFIA: A data preprocessing workflow for Flow Injection Analysis coupled to High-Resolution Mass Spectrometry. *Bioinformatics*, 33:3767-3775 (https://doi.org/10.1093/bioinformatics/btx458).   
 **Licence:** CeCILL  
 **Reference history:**      
 **Funding:** Agence Nationale de la Recherche ([MetaboHUB](http://www.metabohub.fr/index.php?lang=en&Itemid=473) national infrastructure for metabolomics and fluxomics, ANR-11-INBS-0010 grant)
@@ -28,15 +28,16 @@ Status: [![Build Status](https://travis-ci.org/workflow4metabolomics/profia.svg?
   
     ```r
     install.packages("batch", dep=TRUE)
-    install.packages("FNN", dep=TRUE)
-    install.packages("maxLik", dep=TRUE)
     install.packages("minpack.lm", dep=TRUE)
+    install.packages("missForest", dep=TRUE)  
     install.packages("pracma", dep=TRUE)
     ```
   + **profia** from Bioconductor  
   
     ```r
     source("http://www.bioconductor.org/biocLite.R")
+    biocLite("Biobase")
+    biocLite("BiocParallel")
     biocLite("xcms")
     biocLite("plasFIA")
     biocLite("proFIA")
@@ -54,6 +55,12 @@ install.packages('RUnit', dependencies = TRUE)
 ### Working example  
 
 ### News
+
+###### CHANGES IN VERSION 3.1.0  
+
+NEW FEATURE  
+
+randomForest method implemented for imputation of missing values  
 
 ###### CHANGES IN VERSION 3.0.6  
 

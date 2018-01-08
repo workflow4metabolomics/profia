@@ -156,8 +156,12 @@ if(argVc["imputeC"] == "randomForest") {
 
     cat("\n", stpI, ") Imputing missing values ('impute.randomForest'):\n", sep = "")
 
+    set.seed(123)
+
     fiaset <- impute.randomForest(fiaset,
                                   parallel = FALSE)
+
+    set.seed(NULL)
 
     stpI <- stpI + 1
 }

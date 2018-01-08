@@ -1,5 +1,5 @@
 
-Start of the 'proFIA' Galaxy module call: Mon 08 Jan 2018 06:20:07 PM
+Start of the 'proFIA' Galaxy module call: Mon 08 Jan 2018 07:23:11 PM
 files_root_directory	 plasFIA 
 
 1) Peak detection step ('proFIAset'):
@@ -18,6 +18,9 @@ files_root_directory	 plasFIA
   missForest iteration 5 in progress...done!
   missForest iteration 6 in progress...done!
   missForest iteration 7 in progress...done!
+  missForest iteration 8 in progress...done!
+  missForest iteration 9 in progress...done!
+  missForest iteration 10 in progress...done!
 
 5) Plotting ('plot'):
 PCA
@@ -38,7 +41,7 @@ Memory usage: 0.409 MB
 
 7) Exporting ('exportDataMatrix', 'exportSampleMetadata', 'exportVariableMetadata'):
 
-End of 'proFIA' Galaxy module call: 2018-01-08 18:21:27
+End of 'proFIA' Galaxy module call: 2018-01-08 19:27:06
 
 
 
