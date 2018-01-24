@@ -2,8 +2,8 @@
   <description>Preprocessing of FIA-HRMS data</description>
   
   <requirements>
-    <requirement type="package">r-batch</requirement>
-    <requirement type="package">bioconductor-proFIA</requirement>
+    <requirement type="package" version="1.1_4">r-batch</requirement>
+    <requirement type="package" version="1.4.0">bioconductor-proFIA</requirement>
   </requirements>
   
   <stdio>
