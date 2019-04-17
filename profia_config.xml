@@ -3,7 +3,7 @@
   
   <requirements>
     <requirement type="package" version="1.1_4">r-batch</requirement>
-    <requirement type="package" version="1.4.0">bioconductor-proFIA</requirement>
+    <requirement type="package" version="1.4.0">bioconductor-profia</requirement>
   </requirements>
   
   <stdio>
