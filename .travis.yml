@@ -13,4 +13,4 @@ install:
 
 script:
  - planemo lint ${TRAVIS_BUILD_DIR}/profia_config.xml
- - planemo test --conda_auto_init --conda_auto_install --conda_dependency_resolution --galaxy_branch release_17.05 --no_cache_galaxy ${TRAVIS_BUILD_DIR}/profia_config.xml
+ - planemo test --conda_auto_init --conda_auto_install --conda_dependency_resolution --galaxy_branch release_18.05 --no_cache_galaxy ${TRAVIS_BUILD_DIR}/profia_config.xml
